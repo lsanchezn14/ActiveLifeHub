@@ -3,18 +3,24 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9; /* Fondo claro */
-    color: #333; /* Texto oscuro */
+    background-color: #f4f4f9;
+    /* Fondo claro */
+    color: #333;
+    /* Texto oscuro */
 }
 
 /* Estilos para el encabezado */
 header {
-    background-color: #0052cc; /* Fondo azul */
-    color: white; /* Texto blanco */
+    background-color: #0052cc;
+    /* Fondo azul */
+    color: white;
+    /* Texto blanco */
     padding: 1rem;
     text-align: center;
-    font-size: 2rem; /* Tamaño de fuente más grande */
-    font-weight: bold; /* Texto en negrita */
+    font-size: 2rem;
+    /* Tamaño de fuente más grande */
+    font-weight: bold;
+    /* Texto en negrita */
 }
 
 /* Estilos para la barra de navegación */
@@ -32,23 +38,29 @@ header {
 }
 
 #logo {
-    max-width: 150px; /* Cambia este valor según el tamaño deseado */
-    height: auto; /* Mantiene la proporción de la imagen */
+    max-width: 150px;
+    /* Cambia este valor según el tamaño deseado */
+    height: auto;
+    /* Mantiene la proporción de la imagen */
 }
 
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 992px) {
     .navbar-collapse {
-        background-color: #0052cc; /* Color de fondo azul para el menú desplegable */
-        padding: 1rem; /* Espacio interno para el menú desplegable */
+        background-color: #0052cc;
+        /* Color de fondo azul para el menú desplegable */
+        padding: 1rem;
+        /* Espacio interno para el menú desplegable */
     }
 
     .nav-link {
-        color: white; /* Texto blanco para los enlaces */
+        color: white;
+        /* Texto blanco para los enlaces */
     }
 
     .nav-link:hover {
-        color: #e0e0e0; /* Color gris claro al pasar el cursor */
+        color: #e0e0e0;
+        /* Color gris claro al pasar el cursor */
     }
 }
 
@@ -65,15 +77,18 @@ table {
     margin-top: 1rem;
 }
 
-th, td {
+th,
+td {
     padding: 0.75rem;
     border: 1px solid #ddd;
     text-align: center;
 }
 
 th {
-    background-color: #0052cc; /* Fondo azul para encabezados de tabla */
-    color: white; /* Texto blanco */
+    background-color: #0052cc;
+    /* Fondo azul para encabezados de tabla */
+    color: white;
+    /* Texto blanco */
 }
 
 /* Botones */
@@ -82,31 +97,39 @@ td button {
     margin: 0 0.25rem;
     border: none;
     cursor: pointer;
-    border-radius: 4px; /* Bordes redondeados */
-    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    border-radius: 4px;
+    /* Bordes redondeados */
+    font-size: 0.9rem;
+    /* Tamaño de fuente más pequeño */
 }
 
 .btn-ver {
-    background-color: #4caf50; /* Verde para botón 'Ver' */
+    background-color: #4caf50;
+    /* Verde para botón 'Ver' */
     color: white;
 }
 
 .btn-editar {
-    background-color: #ff9800; /* Naranja para botón 'Editar' */
+    background-color: #ff9800;
+    /* Naranja para botón 'Editar' */
     color: white;
 }
 
 .btn-eliminar {
-    background-color: #f44336; /* Rojo para botón 'Eliminar' */
+    background-color: #f44336;
+    /* Rojo para botón 'Eliminar' */
     color: white;
 }
 
 /* Estilo para contenedores de formularios */
 .container {
-    background-color: white; /* Fondo blanco */
-    border: 1px solid #ddd; /* Borde gris claro */
+    background-color: white;
+    /* Fondo blanco */
+    border: 1px solid #ddd;
+    /* Borde gris claro */
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
     padding: 2rem;
     margin: 2rem auto;
     width: 90%;
@@ -117,8 +140,10 @@ td button {
 /* Encabezados dentro de contenedores */
 h2 {
     margin-bottom: 1.5rem;
-    color: #0052cc; /* Azul para encabezados */
-    font-size: 1.8rem; /* Tamaño de fuente más grande */
+    color: #0052cc;
+    /* Azul para encabezados */
+    font-size: 1.8rem;
+    /* Tamaño de fuente más grande */
 }
 
 /* Etiquetas de formularios */
@@ -142,8 +167,10 @@ input[type="text"] {
 
 /* Botones de formulario */
 button {
-    background-color: #0052cc; /* Fondo azul */
-    color: white; /* Texto blanco */
+    background-color: #0052cc;
+    /* Fondo azul */
+    color: white;
+    /* Texto blanco */
     border: none;
     border-radius: 4px;
     padding: 0.75rem 1.5rem;
@@ -152,32 +179,85 @@ button {
 }
 
 button:hover {
-    background-color: #003d99; /* Azul más oscuro al pasar el cursor */
+    background-color: #003d99;
+    /* Azul más oscuro al pasar el cursor */
 }
 
 /* Estilos para enlaces */
 a {
-    color: #0052cc; /* Azul */
+    color: #0052cc;
+    /* Azul */
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline; /* Subrayado al pasar el cursor */
+    text-decoration: underline;
+    /* Subrayado al pasar el cursor */
 }
-
-
-
 
 /* Estilos para el footer */
 footer {
-    background-color: #f8f9fa; /* Fondo claro */
-    color: #333; /* Texto oscuro */
+    background-color: #f8f9fa;
+    /* Fondo claro */
+    color: #333;
+    /* Texto oscuro */
     padding: 1rem 0;
     text-align: center;
-    border-top: 1px solid #ddd; /* Borde superior */
+    border-top: 1px solid #ddd;
+    /* Borde superior */
 }
 
 footer p {
     margin: 0;
-    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    font-size: 0.9rem;
+    /* Tamaño de fuente más pequeño */
+}
+
+/*Style users profile info*/
+
+.profile-card {
+    background-color: lightskyblue;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 10px 10px 2cqb rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    margin: 5rem auto;
+    max-width: 1000px;
+    align-items: center;
+}
+
+
+.image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: lightskyblue;
+    padding: 3px;
+    margin: 10px;
+}
+
+.image .img-container {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    padding: 10px 50px 20px;
+}
+
+.content-container {
+    display: flex; /* Activa Flexbox */
+    align-items: flex-start; /* Alinea verticalmente */
+    gap: 20px; /* Espaciado entre imagen y formulario */
+    margin: 40px;
+}
+
+/* Formulario */
+.form-container {
+    flex: 1; /* El formulario ocupa el espacio restante */
+}
+
+form {
+    width: 100%; /* Ajusta el ancho del formulario */
 }
