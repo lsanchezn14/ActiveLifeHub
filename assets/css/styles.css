@@ -181,3 +181,93 @@ footer p {
     margin: 0;
     font-size: 0.9rem; /* Tamaño de fuente más pequeño */
 }
+
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+.intro-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+}
+.btn-login {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+.btn-login:hover {
+    background: #0056b3;
+}
+footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/*Style users profile info*/
+
+.profile-card {
+    background-color: lightskyblue;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 10px 10px 2cqb rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    margin: 5rem auto;
+    max-width: 1000px;
+    align-items: center;
+}
+
+
+.image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: lightskyblue;
+    padding: 3px;
+    margin: 10px;
+}
+
+.image .img-container {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    padding: 10px 50px 20px;
+}
+
+.content-container {
+    display: flex; /* Activa Flexbox */
+    align-items: flex-start; /* Alinea verticalmente */
+    gap: 20px; /* Espaciado entre imagen y formulario */
+    margin: 40px;
+}
+
+/* Formulario */
+.form-container {
+    flex: 1; /* El formulario ocupa el espacio restante */
+}
+
+form {
+    width: 100%; /* Ajusta el ancho del formulario */
+}
