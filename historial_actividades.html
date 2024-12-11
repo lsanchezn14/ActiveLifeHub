@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Actividades</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-4">
+        <h1>Historial de Actividades</h1>
+
+        <!-- Formulario para agregar o editar historial -->
+        <?php if (isset($_GET['editar'])): ?>
+            <?php
+                $id_historial = $_GET['editar'];
+                $query_edit = "SELECT * FROM Historial_Actividades WHERE ID_Historial='$id_historial'";
+                $result_edit = mysqli_query($conexion, $query_edit);
+                $historial = mysqli_fetch_assoc($result_edit);
+            ?>
+            <h2>Editar Historial</h2>
+            <form method="POST">
+                <input type="hidden" name="id_historial" value="<?php echo $historial['ID_Historial']; ?>">
+                <div class="mb-3">
+                    <label for="id_actividad" class="form-label">Actividad</label>
+                    <select class="form-control" id="id_actividad" name="id_actividad" required>
+                        <?php
+                        $query_actividades = "SELECT * FROM Categorias_Actividades";
+                        $actividades = mysqli_query($conexion, $query_actividades);
+                        while ($actividad = mysqli_fetch_assoc($actividades)) {
+                            echo "<option value='{$actividad['ID_Categoria']}' " . ($historial['ID_Actividad'] == $actividad['ID_Categoria'] ? 'selected' : '') . ">{$actividad['Nombre_Categoria']}</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_usuario" class="form-label">Usuario</label>
+                    <select class="form-control" id="id_usuario" name="id_usuario" required>
+                        <?php
+                        $query_usuarios = "SELECT * FROM Usuarios";
+                        $usuarios = mysqli_query($conexion, $query_usuarios);
+                        while ($usuario = mysqli_fetch_assoc($usuarios)) {
+                            echo "<option value='{$usuario['ID_Usuario']}' " . ($historial['ID_Usuario'] == $usuario['ID_Usuario'] ? 'selected' : '') . ">{$usuario['Nombre_Usuario']}</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="estado_participacion" class="form-label">Estado de Participación</label>
+                    <input type="text" class="form-control" id="estado_participacion" name="estado_participacion" value="<?php echo $historial['Estado_Participacion']; ?>" required>
+                </div>
+                <button type="submit" name="editar_historial" class="btn btn-primary">Actualizar Historial</button>
+            </form>
+        <?php else: ?>
+            <h2>Agregar Nuevo Historial</h2>
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="id_actividad" class="form-label">Actividad</label>
+                    <select class="form-control" id="id_actividad" name="id_actividad" required>
+                        <?php
+                        $actividades = mysqli_query($conexion, $query_actividades);
+                        while ($actividad = mysqli_fetch_assoc($actividades)) {
+                            echo "<option value='{$actividad['ID_Categoria']}'>{$actividad['Nombre_Categoria']}</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_usuario" class="form-label">Usuario</label>
+                    <select class="form-control" id="id_usuario" name="id_usuario" required>
+                        <?php
+                        $usuarios = mysqli_query($conexion, $query_usuarios);
+                        while ($usuario = mysqli_fetch_assoc($usuarios)) {
+                            echo "<option value='{$usuario['ID_Usuario']}'>{$usuario['Nombre_Usuario']}</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="estado_participacion" class="form-label">Estado de Participación</label>
+                    <input type="text" class="form-control" id="estado_participacion" name="estado_participacion" required>
+                </div>
+                <button type="submit" name="agregar_historial" class="btn btn-primary">Agregar Historial</button>
+            </form>
+        <?php endif; ?>
+
+        <!-- Tabla de historiales -->
+        <h2 class="mt-4">Historiales Existentes</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Actividad</th>
+                    <th>Usuario</th>
+                    <th>Estado de Participación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <tr>
+                        <td><?php echo $row['ID_Historial']; ?></td>
+                        <td><?php echo $row['Nombre_Categoria']; ?></td>
+                        <td><?php echo $row['Nombre_Usuario']; ?></td>
+                        <td><?php echo $row['Estado_Participacion']; ?></td>
+                        <td>
+                            <a href="?editar=<?php echo $row['ID_Historial']; ?>" class="btn btn-warning">Editar</a>
+                            <a href="?eliminar=<?php echo $row['ID_Historial']; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este historial?')">Eliminar</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
