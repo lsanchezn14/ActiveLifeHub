@@ -1,8 +1,23 @@
 <?php
 session_start();
+require_once "../config/db_connect.php";
 
 $isLoggedIn = isset($_SESSION['email']);
 $isAdmin = $isLoggedIn && $_SESSION['role'] === 'admin';
+
+try {
+    $stmtActividades = $pdo->query("SELECT COUNT(*) AS total FROM actividades");
+    $totalActividades = $stmtActividades->fetch(PDO::FETCH_ASSOC)['total'];
+
+    $stmtUsuarios = $pdo->query("SELECT COUNT(*) AS total FROM users");
+    $totalUsuarios = $stmtUsuarios->fetch(PDO::FETCH_ASSOC)['total'];
+
+    $stmtUbicaciones = $pdo->query("SELECT COUNT(*) AS total FROM ubicaciones");
+    $totalUbicaciones = $stmtUbicaciones->fetch(PDO::FETCH_ASSOC)['total'];
+} catch (Exception $e) {
+    echo "Error al cargar los datos: " . $e->getMessage();
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +33,7 @@ $isAdmin = $isLoggedIn && $_SESSION['role'] === 'admin';
 </head>
 
 <body>
+    <h1>Welcome Admin</h1>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
         <div class="container-fluid">
             <img src="../assets/images/logo.png" alt="Welcome Image" class="logo-image">
@@ -83,6 +99,56 @@ $isAdmin = $isLoggedIn && $_SESSION['role'] === 'admin';
         </div>
         <img src="../assets/images/index.jpg" alt="Welcome Image" class="intro-image">
     </main>
+    <div class="container mt-5">
+        <h1 class="mb-4">Panel Administrativo</h1>
+
+        <div class="row">
+            <!-- Actividades -->
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Actividades</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Total: <?php echo $totalActividades; ?></h5>
+                        <p class="text-dark">Número total de actividades creadas en el sistema.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Usuarios -->
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Usuarios</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Total: <?php echo $totalUsuarios; ?></h5>
+                        <p class="text-dark">Número total de usuarios registrados en el sistema.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ubicaciones -->
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Ubicaciones</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Total: <?php echo $totalUbicaciones; ?></h5>
+                        <p class="text-dark">Número total de ubicaciones registradas en el sistema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <h3>Acciones Administrativas</h3>
+            <ul>
+                <a href="userAdmin.php" class="btn btn-link">Gestionar Usuarios</a>
+                <a href="lista_actividades.html" class="btn btn-link">Gestionar Actividades</a>
+                <a href="lista_ubicaciones.html" class="btn btn-link">Gestionar Ubicaciones</a>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
     <?php include '../includes/footer.html'; ?>
 </body>
 

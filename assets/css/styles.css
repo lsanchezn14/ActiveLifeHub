@@ -7,6 +7,8 @@ body {
     /* Fondo claro */
     color: #333;
     /* Texto oscuro */
+    background-color: #f4f4f9; /* Fondo claro */
+    color: #000000; /* Texto oscuro */
 }
 
 
@@ -181,8 +183,6 @@ a:hover {
     text-decoration: underline;
     /* Subrayado al pasar el cursor */
 }
-
-
 
 
 /* Estilos para el footer */
@@ -447,4 +447,7 @@ form {
 
 .form-container-user button:hover {
     background-color: #1976D2; /* Azul más oscuro al pasar el mouse */
+}
+.card-text{
+    color: #000000;
 }
