@@ -5,41 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Actividades</title>
-    <link rel="stylesheet" href="../assets/css/styles.css"><!-- utiliza estilos y colores de hoja externa styles -->
-    <!-- Enlace a Bootstrap para diseño -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Navbar con Bootstrap -->
+    <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
         <div class="container-fluid">
             <a class="navbar-brand" href="home.php">Active Life Hub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Actividades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Buscar">Buscar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Salir</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Actividades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="lista_ubicaciones.html">Ubicaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#Buscar">Buscar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Salir</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Título principal -->
     <header>
-        <h1>Lista de Actividades</h1>
+        <h1 class="text-center my-4">Lista de Actividades</h1>
     </header>
+
+    <!-- Contenido principal -->
     <main>
-        <section class="activity-list">
-            <table>
+        <section class="activity-list container">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-success" id="btnAgregar" data-bs-toggle="modal" data-bs-target="#modalActividad">
+                    + Agregar Actividad
+                </button>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -51,135 +51,263 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Partido de Fútbol</td>
-                        <td>Fútbol</td>
-                        <td>2024-12-01</td>
-                        <td>Parque Central</td>
-                        <td>10</td>
-                        <td>Activa</td>
-                        <td>
-                            <button class="btn-ver" onclick="verActividad(this)">Ver</button>
-                            <button class="btn-editar" onclick="editarActividad(this)">Editar</button>
-                            <button class="btn-eliminar" onclick="eliminarActividad(this)">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Torneo de Voleibol</td>
-                        <td>Voleibol</td>
-                        <td>2024-12-05</td>
-                        <td>Cancha Municipal</td>
-                        <td>8</td>
-                        <td>Activa</td>
-                        <td>
-                            <button class="btn-ver" onclick="verActividad(this)">Ver</button>
-                            <button class="btn-editar" onclick="editarActividad(this)">Editar</button>
-                            <button class="btn-eliminar" onclick="eliminarActividad(this)">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Maratón Urbana</td>
-                        <td>Correr</td>
-                        <td>2024-12-10</td>
-                        <td>Avenida Central</td>
-                        <td>30</td>
-                        <td>Activa</td>
-                        <td>
-                            <button class="btn-ver" onclick="verActividad(this)">Ver</button>
-                            <button class="btn-editar" onclick="editarActividad(this)">Editar</button>
-                            <button class="btn-eliminar" onclick="eliminarActividad(this)">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Clase de Yoga</td>
-                        <td>Yoga</td>
-                        <td>2024-12-07</td>
-                        <td>Gimnasio Saludable</td>
-                        <td>12</td>
-                        <td>Activa</td>
-                        <td>
-                            <button class="btn-ver" onclick="verActividad(this)">Ver</button>
-                            <button class="btn-editar" onclick="editarActividad(this)">Editar</button>
-                            <button class="btn-eliminar" onclick="eliminarActividad(this)">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Partido de Basketball</td>
-                        <td>Basketball</td>
-                        <td>2024-12-12</td>
-                        <td>Polideportivo</td>
-                        <td>15</td>
-                        <td>Activa</td>
-                        <td>
-                            <button class="btn-ver" onclick="verActividad(this)">Ver</button>
-                            <button class="btn-editar" onclick="editarActividad(this)">Editar</button>
-                            <button class="btn-eliminar" onclick="eliminarActividad(this)">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Campeonato de Tenis</td>
-                        <td>Tenis</td>
-                        <td>2024-12-15</td>
-                        <td>Club Tenis</td>
-                        <td>5</td>
-                        <td>Activa</td>
-                        <td>
-                            <button class="btn-ver" onclick="verActividad(this)">Ver</button>
-                            <button class="btn-editar" onclick="editarActividad(this)">Editar</button>
-                            <button class="btn-eliminar" onclick="eliminarActividad(this)">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Entrenamiento de Ciclismo</td>
-                        <td>Ciclismo</td>
-                        <td>2024-12-20</td>
-                        <td>Calle Central</td>
-                        <td>8</td>
-                        <td>Activa</td>
-                        <td>
-                            <button class="btn-ver" onclick="verActividad(this)">Ver</button>
-                            <button class="btn-editar" onclick="editarActividad(this)">Editar</button>
-                            <button class="btn-eliminar" onclick="eliminarActividad(this)">Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody id="tabla-actividades"></tbody>
             </table>
         </section>
     </main>
+
+    <!-- Modal para agregar/actualizar actividad -->
+    <div class="modal fade" id="modalActividad" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Agregar Nueva Actividad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formActividad">
+                        <input type="hidden" id="idActividad">
+                        <div class="mb-3"><label>Nombre</label><input type="text" class="form-control" id="nombre"
+                                required></div>
+                        <div class="mb-3"><label>Deporte</label><select class="form-select" id="deporte"
+                                required></select></div>
+                        <div class="mb-3"><label>Fecha</label><input type="date" class="form-control" id="fecha"
+                                required></div>
+                        <div class="mb-3"><label>Ubicación</label><select class="form-select" id="ubicacion"
+                                required></select></div>
+                        <div class="mb-3"><label>Participantes</label><input type="number" class="form-control"
+                                id="participantes" required></div>
+                        <div class="mb-3"><label>Estado</label>
+                            <select class="form-select" id="estado" required>
+                                <option value="Activa">Activa</option>
+                                <option value="Inactiva">Inactiva</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="guardarActividad">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Función para ver.
-        function verActividad(button) {
-            const row = button.closest("tr");
-            const nombre = row.cells[0].innerText;
-            const deporte = row.cells[1].innerText;
-            const fecha = row.cells[2].innerText;
-            const ubicacion = row.cells[3].innerText;
-            const participantes = row.cells[4].innerText;
-            const estado = row.cells[5].innerText;
-            // Rellenar los valores.
-            const newNombre = prompt("Nuevo nombre de actividad", nombre);
-            const newDeporte = prompt("Nuevo deporte", deporte);
-            const newFecha = prompt("Nueva fecha", fecha);
-            const newUbicacion = prompt("Nueva ubicación", ubicacion);
-            const newParticipantes = prompt("Nuevos participantes", participantes);
-            const newEstado = prompt("Nuevo estado", estado);
-            // Actualizar la fila.
-            row.cells[0].innerText = newNombre;
-            row.cells[1].innerText = newDeporte;
-            row.cells[2].innerText = newFecha;
-            row.cells[3].innerText = newUbicacion;
-            row.cells[4].innerText = newParticipantes;
-            row.cells[5].innerText = newEstado;
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarActividades();
+            cargarDeportes();
+            cargarUbicaciones();
+
+            document.getElementById("btnAgregar").addEventListener("click", () => resetFormulario());
+        });
+
+        function cargarDeportes() {
+            fetch("deportes_read.php")
+                .then(res => res.json())
+                .then(data => {
+                    const select = document.getElementById("deporte");
+                    select.innerHTML = `<option value="">Seleccione un deporte</option>`;
+                    data.forEach(d => select.innerHTML += `<option value="${d.ID_Deporte}">${d.Nombre_Deporte}</option>`);
+                });
         }
-        // Función para eliminar.
-        function eliminarActividad(button) {
-            const row = button.closest("tr");
-            if (confirm("¿Estás seguro de que deseas eliminar esta actividad?")) {
-                row.remove();
+
+        function cargarUbicaciones() {
+            fetch("ubicaciones_read.php")
+                .then(res => res.json())
+                .then(data => {
+                    const select = document.getElementById("ubicacion");
+                    select.innerHTML = `<option value="">Seleccione una ubicación</option>`;
+                    data.forEach(u => select.innerHTML += `<option value="${u.ID_Ubicacion}">${u.Nombre_Ubicacion}</option>`);
+                });
+        }
+
+        function cargarActividades() {
+            fetch("actividades_read.php")
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.getElementById("tabla-actividades");
+                    tbody.innerHTML = "";
+                    data.forEach(a => {
+                        tbody.innerHTML += `
+                            <tr>
+                                <td>${a.Nombre_Actividad}</td>
+                                <td>${a.Tipo_Deporte}</td>
+                                <td>${a.Fecha.split(" ")[0]}</td>
+                                <td>${a.Ubicacion}</td>
+                                <td>${a.Numero_Participantes}</td>
+                                <td>${a.Estado}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" onclick="cargarDatos(${a.ID_Actividad})">Actualizar</button>
+                                    <button class="btn btn-danger btn-sm" onclick="eliminarActividad(${a.ID_Actividad})">Eliminar</button>
+                                </td>
+                            </tr>`;
+                    });
+                });
+        }
+
+        function resetFormulario() {
+            const form = document.getElementById("formActividad");
+
+            // Restablece todos los campos del formulario
+            form.reset();
+            document.getElementById("idActividad").value = ""; // Limpia el campo oculto ID
+            document.getElementById("modal-title").textContent = "Agregar Nueva Actividad";
+
+            // Restablece los valores de los select (deporte y ubicación)
+            document.getElementById("deporte").innerHTML = `<option value="">Seleccione un deporte</option>`;
+            document.getElementById("ubicacion").innerHTML = `<option value="">Seleccione una ubicación</option>`;
+
+            // Recarga las opciones para deporte y ubicación
+            cargarDeportes();
+            cargarUbicaciones();
+
+            // Elimina cualquier evento submit previo
+            form.onsubmit = null;
+
+            // Asigna el evento submit a la función guardarActividad
+            form.addEventListener("submit", guardarActividad);
+        }
+
+        function cargarDatos(id) {
+            fetch(`actividades_read.php?id=${id}`)
+                .then(response => response.json())
+                .then(actividad => {
+                    if (!actividad || actividad.error) {
+                        alert("No se pudo cargar la actividad.");
+                        return;
+                    }
+
+                    // Asigna valores a los campos del formulario
+                    document.getElementById("idActividad").value = actividad.ID_Actividad;
+                    document.getElementById("nombre").value = actividad.Nombre_Actividad;
+                    document.getElementById("fecha").value = actividad.Fecha.split(" ")[0];
+                    document.getElementById("participantes").value = actividad.Numero_Participantes;
+                    document.getElementById("estado").value = actividad.Estado;
+
+                    // Cargar y preseleccionar el deporte
+                    fetch("deportes_read.php")
+                        .then(res => res.json())
+                        .then(deportes => {
+                            const selectDeporte = document.getElementById("deporte");
+                            selectDeporte.innerHTML = `<option value="">Seleccione un deporte</option>`;
+                            deportes.forEach(d => {
+                                const selected = (d.Nombre_Deporte === actividad.Tipo_Deporte) ? "selected" : "";
+                                selectDeporte.innerHTML += `<option value="${d.ID_Deporte}" ${selected}>${d.Nombre_Deporte}</option>`;
+                            });
+                        });
+
+                    // Cargar y preseleccionar la ubicación
+                    fetch("ubicaciones_read.php")
+                        .then(res => res.json())
+                        .then(ubicaciones => {
+                            const selectUbicacion = document.getElementById("ubicacion");
+                            selectUbicacion.innerHTML = `<option value="">Seleccione una ubicación</option>`;
+                            ubicaciones.forEach(u => {
+                                const selected = (u.Nombre_Ubicacion === actividad.Ubicacion) ? "selected" : "";
+                                selectUbicacion.innerHTML += `<option value="${u.ID_Ubicacion}" ${selected}>${u.Nombre_Ubicacion}</option>`;
+                            });
+                        });
+
+                    // Cambiar título y evento submit
+                    document.getElementById("modal-title").textContent = "Actualizar Actividad";
+
+                    const form = document.getElementById("formActividad");
+                    form.removeEventListener("submit", guardarActividad); // Elimina cualquier evento previo
+                    form.onsubmit = (e) => {
+                        e.preventDefault();
+                        actualizarActividad(id);
+                    };
+
+                    // Mostrar el modal
+                    const modal = new bootstrap.Modal(document.getElementById("modalActividad"));
+                    modal.show();
+                })
+                .catch(error => {
+                    console.error("Error al cargar datos:", error);
+                    alert("Error al cargar los datos de la actividad.");
+                });
+        }
+
+        function eliminarActividad(id) {
+            fetch("actividades_delete.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            }).then(() => cargarActividades());
+        }
+
+        function actualizarActividad(id) {
+            // Obtener los datos del formulario
+            const datos = obtenerDatosFormulario();
+            datos.id = id; // Agrega el ID al objeto de datos
+
+            // Enviar los datos a la API para actualizar
+            fetch("actividades_update.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datos)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(`Error: ${data.error}`);
+                    } else {
+                        alert(data.message || "Actividad actualizada correctamente.");
+                        cerrarModal(); // Cierra el modal
+                        cargarActividades(); // Recarga la lista de actividades
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al actualizar la actividad:", error);
+                    alert("Hubo un problema al actualizar la actividad.");
+                });
+        }
+
+        function obtenerDatosFormulario() {
+            return {
+                nombre: document.getElementById("nombre").value,
+                deporte: document.getElementById("deporte").value,
+                fecha: document.getElementById("fecha").value,
+                ubicacion: document.getElementById("ubicacion").value,
+                participantes: document.getElementById("participantes").value,
+                estado: document.getElementById("estado").value
+            };
+        }
+
+        function cerrarModal() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById("modalActividad"));
+            if (modal) {
+                modal.hide(); // Cierra el modal si existe una instancia activa
             }
+            resetFormulario(); // Limpia los campos del formulario
+        }
+
+        function guardarActividad(event) {
+            event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+            const datos = obtenerDatosFormulario(); // Obtiene los datos del formulario
+
+            fetch("actividades_create.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datos)
+            })
+                .then(response => response.json()) // Convierte la respuesta a JSON
+                .then(data => {
+                    if (data.error) {
+                        alert(`Error: ${data.error}`); // Muestra el error si existe
+                    } else {
+                        alert(data.message || "Actividad agregada correctamente."); // Muestra mensaje de éxito
+                        cerrarModal(); // Cierra el modal
+                        cargarActividades(); // Recarga la lista de actividades
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al agregar la actividad:", error);
+                    alert("Hubo un problema al agregar la actividad.");
+                });
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

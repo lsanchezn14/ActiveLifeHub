@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Ubicaciones</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.php">Active Life Hub</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="lista_actividades.html">Actividades</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Ubicaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Título principal -->
+    <header>
+        <h1 class="text-center my-4">Lista de Ubicaciones</h1>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section class="container">
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-success" id="btnAgregarUbicacion" data-bs-toggle="modal"
+                    data-bs-target="#modalUbicacion">
+                    + Agregar Ubicación
+                </button>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-ubicaciones"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalUbicacion" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Agregar Nueva Ubicación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formUbicacion">
+                        <input type="hidden" id="idUbicacion">
+                        <div class="mb-3">
+                            <label>Nombre de Ubicación</label>
+                            <input type="text" class="form-control" id="nombreUbicacion" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarUbicaciones();
+
+            document.getElementById("btnAgregarUbicacion").addEventListener("click", () => resetFormulario());
+            document.getElementById("formUbicacion").addEventListener("submit", guardarUbicacion);
+        });
+
+        function cargarUbicaciones() {
+            fetch("ubicaciones_read.php")
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.getElementById("tabla-ubicaciones");
+                    tbody.innerHTML = "";
+                    data.forEach(u => {
+                        tbody.innerHTML += `
+                            <tr>
+                                <td>${u.ID_Ubicacion}</td>
+                                <td>${u.Nombre_Ubicacion}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" onclick="cargarDatos(${u.ID_Ubicacion})">Actualizar</button>
+                                    <button class="btn btn-danger btn-sm" onclick="eliminarUbicacion(${u.ID_Ubicacion})">Eliminar</button>
+                                </td>
+                            </tr>`;
+                    });
+                });
+        }
+
+        function resetFormulario() {
+            document.getElementById("formUbicacion").reset();
+            document.getElementById("idUbicacion").value = "";
+            document.getElementById("modal-title").textContent = "Agregar Nueva Ubicación";
+        }
+
+        function guardarUbicacion(e) {
+            e.preventDefault();
+            const id = document.getElementById("idUbicacion").value;
+            const nombre = document.getElementById("nombreUbicacion").value;
+
+            const url = id ? "ubicaciones_update.php" : "ubicaciones_create.php";
+            const datos = id ? { id, nombre } : { nombre };
+
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datos)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message || "Operación exitosa.");
+                    cerrarModal();
+                    cargarUbicaciones();
+                })
+                .catch(error => alert("Error: " + error));
+        }
+
+        function cargarDatos(id) {
+            fetch(`ubicaciones_read.php?id=${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("idUbicacion").value = data.ID_Ubicacion;
+                    document.getElementById("nombreUbicacion").value = data.Nombre_Ubicacion;
+                    document.getElementById("modal-title").textContent = "Actualizar Ubicación";
+
+                    const modal = new bootstrap.Modal(document.getElementById("modalUbicacion"));
+                    modal.show();
+                });
+        }
+
+        function eliminarUbicacion(id) {
+            fetch("ubicaciones_delete.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message || "Ubicación eliminada correctamente.");
+                    cargarUbicaciones();
+                })
+                .catch(error => alert("Error: " + error));
+        }
+
+        function cerrarModal() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById("modalUbicacion"));
+            modal.hide();
+            resetFormulario();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
